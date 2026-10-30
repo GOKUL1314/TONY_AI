@@ -1,0 +1,1138 @@
+[
+  {
+    "upgrade_id": "upg_20261008_074023_910ef0",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 14,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T07:40:23.973692",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_074521_6a06d8",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 14,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T07:45:21.818773",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_074632_13ffd2",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 14,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T07:46:32.545775",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_075108_e849ff",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T07:51:08.425505",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_075725_687e8f",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T07:57:25.555871",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_075725_46f022",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T07:57:25.570061",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_080053_afb284",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T08:00:53.536166",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_080053_c83a80",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-08T08:00:53.556305",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261008_080053_c83a80",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261008_080239_41eaa1",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T08:02:39.904231",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_080239_a7e8ff",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-08T08:02:39.921549",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261008_080239_a7e8ff",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261008_080254_e5bcd6",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T08:02:54.701506",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_122304_215154",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T12:23:04.760466",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_122304_8f5666",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-08T12:23:04.775467",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261008_122304_8f5666",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261008_122318_02ab1f",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 15,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T12:23:18.815919",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_124746_3c19da",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 16,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T12:47:46.216497",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_124746_2ce272",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 16,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-08T12:47:46.232728",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261008_124746_2ce272",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261008_124800_e41557",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 16,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T12:48:00.218575",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_130411_6507aa",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 16,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T13:04:11.039703",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_130411_ea6438",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 16,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-08T13:04:11.057790",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261008_130411_ea6438",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261008_130425_57932d",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 16,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T13:04:25.308538",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_132127_d83a4a",
+    "reason": "Intent Understanding, Target Scope Analysis and TaskPlan Multi-Step Integration Fix",
+    "files_changed": [
+      "intelligence/target_scope.py",
+      "tools/planner.py",
+      "intelligence/intent.py",
+      "intelligence/planner.py",
+      "intelligence/orchestrator.py",
+      "intelligence/responses.py",
+      "ai/mock_provider.py",
+      "routes/chat.py",
+      "tests/test_intent_tool_selection.py"
+    ],
+    "steps": [],
+    "risk_level": "MEDIUM",
+    "tests_affected": 414,
+    "requires_confirmation": false,
+    "status": "COMPLETED",
+    "created_at": "2026-10-08T13:21:27.000000",
+    "backup_location": "data/self_upgrade/backups/upg_20261008_132127_d83a4a",
+    "test_result": {
+      "total": 414,
+      "passed": 413,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 1,
+      "duration_seconds": 93.2,
+      "success": true,
+      "output_summary": "414 tests run: 413 passed, 0 failed, 1 skipped"
+    },
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_140542_2bffd4",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 17,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T14:05:42.097563",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_140542_7383db",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 17,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-08T14:05:42.115131",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261008_140542_7383db",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261008_140600_1b1d6c",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 17,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T14:06:00.536217",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_141139_26f710",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 17,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T14:11:39.759664",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_141139_067479",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 17,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-08T14:11:39.774357",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261008_141139_067479",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261008_141158_f0c7ee",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 17,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T14:11:58.292253",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_193430_2b7e48",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 18,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T19:34:30.979298",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261008_193431_9a8ecf",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 18,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-08T19:34:31.003434",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261008_193431_9a8ecf",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261008_193449_cc2738",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 18,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-08T19:34:49.598121",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261022_144359_88e876",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 18,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-22T14:43:59.900400",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261022_144359_fdece8",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 18,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-22T14:43:59.936488",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261022_144359_fdece8",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261022_144420_8ca74a",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 18,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-22T14:44:20.661596",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261022_170111_6bd717",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 19,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-22T17:01:11.202946",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261022_170111_a6b6c8",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 19,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-22T17:01:11.221591",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261022_170111_a6b6c8",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261022_170129_54c98f",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 19,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-22T17:01:29.510714",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261022_175756_a06d50",
+    "reason": "Improve response quality and capability validation",
+    "files_changed": [
+      "intelligence/evaluator.py",
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Improve response quality and capability validation",
+        "applied": false
+      },
+      {
+        "step_id": "step_2",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Improve response quality and capability validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 19,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-22T17:57:56.546911",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  },
+  {
+    "upgrade_id": "upg_20261022_175756_e996e3",
+    "reason": "Testing automated rollback on test failure",
+    "files_changed": [
+      "intelligence/pipeline.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/pipeline.py",
+        "description": "Update intelligence/pipeline.py for Testing automated rollback on test failure",
+        "applied": true
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 19,
+    "requires_confirmation": true,
+    "status": "FAILED",
+    "created_at": "2026-10-22T17:57:56.572849",
+    "backup_location": "C:\\Users\\GOKUL\\Desktop\\TONY_AI\\data\\self_upgrade\\backups\\upg_20261022_175756_e996e3",
+    "test_result": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 1.0,
+      "success": false,
+      "output_summary": "Simulated test failure"
+    },
+    "repair_attempts": 2,
+    "error_message": "Tests failed (2 failed, 0 errors). Automatically rolled back."
+  },
+  {
+    "upgrade_id": "upg_20261022_175815_d6c007",
+    "reason": "Upgrade response validation",
+    "files_changed": [
+      "intelligence/evaluator.py"
+    ],
+    "steps": [
+      {
+        "step_id": "step_1",
+        "file_path": "intelligence/evaluator.py",
+        "description": "Update intelligence/evaluator.py for Upgrade response validation",
+        "applied": false
+      }
+    ],
+    "risk_level": "LOW",
+    "tests_affected": 19,
+    "requires_confirmation": true,
+    "status": "PLANNED",
+    "created_at": "2026-10-22T17:58:15.180779",
+    "backup_location": null,
+    "test_result": null,
+    "repair_attempts": 0,
+    "error_message": null
+  }
+]

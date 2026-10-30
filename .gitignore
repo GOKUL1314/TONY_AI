@@ -1,0 +1,38 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Databases and logs
+*.db
+*.sqlite
+*.sqlite3
+*.log
+logs/
+
+# Runtime data and generated files
+data/audio/
+data/conversations/
+data/generated_images/
+data/generated_videos/
+data/uploaded_images/
+data/tests_conv/
+data/self_upgrade/backups/
+data/personalization/
+data/knowledge/index/
+data/memory.db
+data/image_history.json
+data/video_history.json
+data/vision_history.json
+
+# Editor files
+.vscode/
+.idea/

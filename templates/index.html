@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TONY // Personal AI Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="tony-app-container">
+        <!-- Background Ambient Aesthetics -->
+        <div class="ambient-glow glow-top"></div>
+        <div class="ambient-glow glow-bottom"></div>
+        <div class="grid-overlay"></div>
+
+        <!-- Header / Main HUD Bar -->
+        <header class="tony-hud-header">
+            <div class="brand-section">
+                <div class="reactor-core">
+                    <div class="core-outer-ring"></div>
+                    <div class="core-inner-disc"></div>
+                    <div class="core-pulse-node"></div>
+                </div>
+                <div class="brand-text">
+                    <div class="brand-title">
+                        <span class="letter-t">T</span>ONY
+                        <span class="version-tag">STG.8</span>
+                    </div>
+                    <div class="brand-subtitle">PERSONAL AI DESKTOP ASSISTANT // JARVIS ORCHESTRATION</div>
+                </div>
+            </div>
+
+            <!-- Telemetry Display -->
+            <div class="system-telemetry">
+                <div class="telemetry-item">
+                    <span class="label">ENGINE</span>
+                    <span class="value" id="hudProviderVal">{{ provider_name }}</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="label">VOICE (STT/TTS)</span>
+                    <span class="value voice-badge" id="hudVoiceVal">{{ stt_provider }} / {{ tts_provider }}</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="label">LONG-TERM MEMORY</span>
+                    <span class="value memory-badge" id="hudMemoryVal">MEMORY: <span id="hudMemoryCountVal">{{ memory_count }}</span></span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="label">AUTOMATION TOOLS</span>
+                    <span class="value tools-badge" id="hudToolsVal">TOOLS: <span id="hudToolsCountVal">{{ tool_count }}</span></span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="label">IMAGE STUDIO</span>
+                    <span class="value image-badge" id="hudImageVal">IMAGES: <span id="hudImageCountVal">{{ image_count }}</span></span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="label">VIDEO STUDIO</span>
+                    <span class="value video-badge" id="hudVideoVal">VIDEOS: <span id="hudVideoCountVal">{{ video_count }}</span></span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="label">VISION</span>
+                    <span class="value vision-badge" id="hudVisionVal">{{ vision_model }}</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="label">COST SAFETY</span>
+                    <span class="value safe-mode-badge" id="hudCostSafetyVal" title="Paid video generation is strictly disabled">FREE-SAFE</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="label">SYS STATUS</span>
+                    <span class="status-indicator">
+                        <span class="status-dot online" id="sysStatusDot"></span>
+                        <span class="status-text" id="sysStatusText">ONLINE</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Action Controls Bar -->
+            <div class="header-actions">
+                <button class="hud-btn hud-btn-images" id="openImagesBtn" title="Launch Image Studio & inspect generated visual assets">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                    <span>Images</span>
+                </button>
+
+                <button class="hud-btn hud-btn-videos" id="openVideosBtn" title="Launch Video Studio & synthesize cinematic video clips">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                    </svg>
+                    <span>Videos</span>
+                </button>
+
+                <button class="hud-btn hud-btn-vision" id="openVisionBtn" title="Launch Vision Studio & analyze visual content">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
+                    </svg>
+                    <span>Vision</span>
+                </button>
+
+                <button class="hud-btn hud-btn-knowledge" id="openKnowledgeBtn" title="Launch Knowledge Studio & manage personal documents">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    <span>Knowledge</span>
+                </button>
+
+                <button class="hud-btn hud-btn-personalization" id="openPersonalizationBtn" title="Launch Personalization & Preferences Studio">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Profile</span>
+                    <span class="hud-badge-counter" id="personalizationNotificationCount" style="display: none;">0</span>
+                </button>
+
+
+                <button class="hud-btn hud-btn-tools" id="openToolsBtn" title="Inspect system automation tools and execution telemetry">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                    </svg>
+                    <span>Tools</span>
+                </button>
+
+                <button class="hud-btn hud-btn-memory" id="openMemoryBtn" title="Inspect and manage stored long-term memories">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"></path>
+                        <path d="M9 21h6"></path>
+                    </svg>
+                    <span>Memory</span>
+                </button>
+
+                <button class="hud-btn hud-btn-activity" id="openActivityBtn" title="Inspect active background tasks and task planner">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <span>Activity</span>
+                </button>
+
+                <button class="hud-btn hud-btn-upgrade" id="openSelfUpgradeBtn" title="Launch TONY Self-Upgrade & Intelligence Diagnostic Studio">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                    </svg>
+                    <span>Upgrade</span>
+                </button>
+
+                <button class="hud-toggle-btn active" id="toggleContinuousBtn" title="Toggle hands-free continuous conversation">
+                    <span class="btn-indicator"></span>
+                    <span>Continuous: ON</span>
+                </button>
+
+                <button class="hud-toggle-btn active" id="toggleWakeBtn" title="Toggle local wake word ('Tony')">
+                    <span class="btn-indicator"></span>
+                    <span>Wake Word: ON</span>
+                </button>
+
+                <button class="hud-btn" id="toggleMuteBtn" title="Mute or unmute TONY's voice output">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <span id="muteBtnLabel">Mute</span>
+                </button>
+
+                <button class="hud-btn hud-btn-stop" id="stopSpeakBtn" title="Stop speaking immediately" style="display: none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="5" y="5" width="14" height="14" rx="2"></rect>
+                    </svg>
+                    <span>STOP</span>
+                </button>
+
+                <button class="hud-btn" id="clearBtn" title="Clear current session history">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    <span>Clear</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Voice Status & Acoustic Waveform HUD -->
+        <div class="voice-hud-bar" id="voiceHudBar">
+            <!-- Central TONY Orb (Stage 8) -->
+            <div class="tony-orb-container" id="tonyOrbContainer">
+                <div class="tony-orb idle" id="tonyOrb" title="TONY Core Intelligence Engine">
+                    <div class="orb-ring-outer"></div>
+                    <div class="orb-ring-mid"></div>
+                    <div class="orb-ring-inner"></div>
+                    <div class="orb-core">
+                        <div class="orb-nucleus"></div>
+                    </div>
+                </div>
+                <div class="orb-state-label" id="orbStateLabel">IDLE</div>
+            </div>
+
+            <div class="voice-status-pill idle" id="voiceStatusPill">
+                <span class="voice-status-dot" id="voiceStatusDot"></span>
+                <span class="voice-status-text" id="voiceStatusText">Say "Hey Tony" or click microphone</span>
+            </div>
+
+            <!-- Silence Timeout / Turn Progress Bar -->
+            <div class="vad-meter-container" id="vadMeterContainer" title="Voice Activity Level">
+                <div class="vad-meter-bar" id="vadMeterBar"></div>
+            </div>
+
+            <div class="audio-waveform" id="audioWaveform">
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+            </div>
+        </div>
+
+        <!-- Stage 8 Quick Actions Bar -->
+        <div class="quick-actions-bar" id="quickActionsBar">
+            <button class="quick-act-btn" data-action="image"><span class="q-icon">🎨</span> Image</button>
+            <button class="quick-act-btn" data-action="video"><span class="q-icon">🎬</span> Video</button>
+            <button class="quick-act-btn" data-action="vision"><span class="q-icon">👁️</span> Vision</button>
+            <button class="quick-act-btn" data-action="active-video"><span class="q-icon">✨</span> Animate Image</button>
+            <button class="quick-act-btn" data-action="project"><span class="q-icon">📁</span> Project</button>
+            <button class="quick-act-btn" data-action="activity"><span class="q-icon">⚡</span> Tasks</button>
+            <button class="quick-act-btn" data-action="memory"><span class="q-icon">🧠</span> Memory</button>
+        </div>
+
+
+        <!-- High-Risk Action Confirmation Banner -->
+        <div class="confirmation-banner" id="confirmationBanner" style="display: none;">
+            <div class="confirmation-icon">⚠️</div>
+            <div class="confirmation-body">
+                <div class="confirmation-title">AUTHORIZATION REQUIRED</div>
+                <div class="confirmation-message" id="confirmationMessage">Pending action description...</div>
+                <div class="confirmation-meta">Action ID: <span id="confirmationActionId">---</span> | Expires: <span id="confirmationTimer">60s</span></div>
+            </div>
+            <div class="confirmation-actions">
+                <button type="button" class="confirm-btn-execute" id="btnConfirmAction">CONFIRM</button>
+                <button type="button" class="confirm-btn-cancel" id="btnCancelAction">CANCEL</button>
+            </div>
+        </div>
+
+        <!-- Main Chat Viewport -->
+        <main class="chat-viewport" id="chatViewport">
+            <!-- Dynamic Welcome Hero if empty -->
+            <div class="welcome-hero" id="welcomeHero">
+                <div class="hero-reactor">
+                    <div class="hero-ring"></div>
+                    <div class="hero-icon">T</div>
+                </div>
+                <h2>Image Generation & Computer Automation Active. I am TONY.</h2>
+                <p>I can generate and edit images, execute controlled computer actions, manage files, open apps, control volume, and recall long-term memories. Natural speech commands are supported.</p>
+                <div class="quick-prompts">
+                    <button class="prompt-chip" data-prompt="Tony, create an image of a futuristic city.">"Tony, create an image of a futuristic city"</button>
+                    <button class="prompt-chip" data-prompt="Tony, generate a cinematic Iron Man-inspired laboratory.">"Tony, generate a cinematic laboratory"</button>
+                    <button class="prompt-chip" data-prompt="Generate an image of a red sports car in the rain.">"Generate a red sports car in the rain"</button>
+                    <button class="prompt-chip" data-prompt="Tony, make the previous image more cinematic.">"Tony, make the previous image more cinematic"</button>
+                    <button class="prompt-chip" data-prompt="Tony, open YouTube">"Tony, open YouTube"</button>
+                    <button class="prompt-chip" data-prompt="Remember that my name is Gokul">"Remember that my name is Gokul"</button>
+                </div>
+            </div>
+
+            <!-- Messages Stream -->
+            <div class="message-stream" id="messageStream"></div>
+
+            <!-- Loading / Thinking Indicator -->
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-avatar">T</div>
+                <div class="typing-bubble">
+                    <span class="typing-label">TONY IS PROCESSING</span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <!-- Error Banner -->
+            <div class="error-banner" id="errorBanner">
+                <div class="error-icon">!</div>
+                <div class="error-content">
+                    <span class="error-title">SYSTEM ALERT</span>
+                    <p class="error-message" id="errorMessage">An unexpected communication error occurred.</p>
+                </div>
+                <button class="error-dismiss" id="errorDismiss">&times;</button>
+            </div>
+        </main>
+
+        <!-- Bottom Input & Hardware Safety Console -->
+        <footer class="hud-console">
+            <form class="input-form" id="chatForm">
+                <div class="input-wrapper">
+                    <!-- Microphone Hardware Safety Toggle -->
+                    <button type="button" id="micSafetyBtn" class="mic-safety-btn live" title="Hardware Microphone Safety: Click to turn Microphone completely OFF">
+                        <span class="safety-indicator-dot"></span>
+                        <span class="safety-label" id="micSafetyLabel">MIC ON</span>
+                    </button>
+
+                    <!-- Interactive Microphone Button -->
+                    <button type="button" id="micBtn" class="mic-btn idle" title="Click to manually talk with TONY">
+                        <svg class="mic-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                        </svg>
+                        <span class="mic-pulse-ring"></span>
+                    </button>
+
+                    <textarea 
+                        id="messageInput" 
+                        class="chat-input" 
+                        placeholder="Type a message or say 'Remember that...' (Enter to send)..." 
+                        rows="1"
+                        autocomplete="off"
+                        spellcheck="false"
+                    ></textarea>
+
+                    <button type="submit" id="sendBtn" class="send-btn" title="Send message">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <div class="console-footer-info">
+                <span>TONY AI STAGE 6 // IMAGE GENERATION SUBSYSTEM</span>
+                <span>SAFE LOCAL STORAGE • PROMPT REFINEMENT • DALL-E & MOCK ENGINES</span>
+                <span>REST PROTOCOL v6.0</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Memory HUD Drawer / Modal -->
+    <div class="memory-modal-overlay" id="memoryModalOverlay">
+        <div class="memory-modal">
+            <div class="memory-modal-header">
+                <div class="memory-modal-title">
+                    <span class="memory-icon">🧠</span>
+                    <span>TONY // LONG-TERM MEMORY CONSOLE</span>
+                    <span class="memory-count-badge" id="modalMemoryCountBadge">0 ITEMS</span>
+                </div>
+                <button class="modal-close-btn" id="closeMemoryBtn">&times;</button>
+            </div>
+
+            <!-- Toolbar: Search, Category Filter, Actions -->
+            <div class="memory-modal-toolbar">
+                <div class="search-box">
+                    <input type="text" id="memorySearchInput" placeholder="Search stored memories..." autocomplete="off">
+                </div>
+                <select id="memoryCategorySelect" class="category-select">
+                    <option value="all">All Categories</option>
+                    <option value="identity">Identity</option>
+                    <option value="preference">Preference</option>
+                    <option value="project">Project</option>
+                    <option value="skill">Skill</option>
+                    <option value="instruction">Instruction</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="toolbar-actions">
+                    <button class="hud-btn" id="refreshMemoryBtn" title="Reload memories">Refresh</button>
+                    <button class="hud-btn hud-btn-stop" id="clearAllMemoryBtn" title="Clear all memories">Clear All</button>
+                </div>
+            </div>
+
+            <!-- Memory Items Container -->
+            <div class="memory-cards-container" id="memoryCardsContainer">
+                <!-- Dynamically populated by memory.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tools HUD Drawer / Modal (Stage 5) -->
+    <div class="tools-modal-overlay" id="toolsModalOverlay">
+        <div class="tools-modal">
+            <div class="tools-modal-header">
+                <div class="tools-modal-title">
+                    <span class="tools-icon">⚡</span>
+                    <span>TONY // SYSTEM AUTOMATION TOOLS</span>
+                    <span class="tools-count-badge" id="modalToolsCountBadge">{{ tool_count }} TOOLS</span>
+                </div>
+                <button class="modal-close-btn" id="closeToolsBtn">&times;</button>
+            </div>
+
+            <!-- Tools Navigation Tabs -->
+            <div class="tools-modal-tabs">
+                <button class="tools-tab-btn active" data-tab="catalog">Tool Catalog</button>
+                <button class="tools-tab-btn" data-tab="activity">Telemetry Log</button>
+            </div>
+
+            <!-- Tab 1: Catalog -->
+            <div class="tools-tab-content active" id="tabToolCatalog">
+                <div class="tools-cards-container" id="toolsCardsContainer">
+                    <!-- Populated by tools.js -->
+                </div>
+            </div>
+
+            <!-- Tab 2: Activity Log -->
+            <div class="tools-tab-content" id="tabToolActivity" style="display: none;">
+                <div class="tools-activity-container" id="toolsActivityContainer">
+                    <!-- Populated by tools.js -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Studio / Gallery Modal (Stage 6) -->
+    <div class="images-modal-overlay" id="imagesModalOverlay">
+        <div class="images-modal">
+            <div class="images-modal-header">
+                <div class="images-modal-title">
+                    <span class="images-icon">🎨</span>
+                    <span>TONY // IMAGE STUDIO & VISUAL GENERATION</span>
+                    <span class="images-count-badge" id="modalImageCountBadge">{{ image_count }} IMAGES</span>
+                </div>
+                <button class="modal-close-btn" id="closeImagesBtn">&times;</button>
+            </div>
+
+            <!-- Studio Toolbar: Direct Prompt Bar -->
+            <div class="images-modal-toolbar">
+                <div class="studio-input-group">
+                    <input type="text" id="studioPromptInput" placeholder="Enter image prompt (e.g. 'a cinematic Iron Man-inspired laboratory')..." autocomplete="off">
+                    <button class="hud-btn hud-btn-generate" id="studioGenerateBtn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                        <span>Generate</span>
+                    </button>
+                </div>
+                <div class="toolbar-actions">
+                    <button class="hud-btn" id="refreshImagesBtn" title="Reload image gallery">Refresh</button>
+                </div>
+            </div>
+
+            <!-- Image Gallery Grid Container -->
+            <div class="images-gallery-container" id="imagesGalleryContainer">
+                <!-- Dynamically populated by images.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Lightbox Modal for Full View -->
+    <div class="image-lightbox-overlay" id="imageLightboxOverlay" style="display: none;">
+        <div class="image-lightbox-content">
+            <button class="modal-close-btn lightbox-close-btn" id="closeLightboxBtn">&times;</button>
+            <div class="lightbox-image-wrapper">
+                <img id="lightboxImg" src="" alt="Full View">
+            </div>
+            <div class="lightbox-meta">
+                <div class="lightbox-prompt" id="lightboxPrompt"></div>
+                <div class="lightbox-details" id="lightboxDetails"></div>
+                <div class="lightbox-actions">
+                    <button class="hud-btn" id="lightboxRegenBtn">Regenerate</button>
+                    <a class="hud-btn" id="lightboxDownloadBtn" download href="#" target="_blank">Download</a>
+                    <button class="hud-btn hud-btn-stop" id="lightboxDeleteBtn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Studio Modal (Stage 7) -->
+    <div class="videos-modal-overlay" id="videosModalOverlay">
+        <div class="videos-modal">
+            <div class="videos-modal-header">
+                <div class="videos-modal-title">
+                    <span class="videos-icon">🎬</span>
+                    <span>TONY // VIDEO STUDIO & SYNTHESIS</span>
+                    <span class="videos-count-badge" id="modalVideoCountBadge">{{ video_count }} VIDEOS</span>
+                    <span class="cost-safe-tag" title="Paid providers strictly disabled">FREE-SAFE MODE</span>
+                </div>
+                <button class="modal-close-btn" id="closeVideosBtn">&times;</button>
+            </div>
+
+            <!-- Studio Toolbar & Prompt Formulation -->
+            <div class="videos-modal-toolbar">
+                <div class="video-input-group">
+                    <input type="text" id="studioVideoPromptInput" placeholder="Enter video prompt (e.g. 'a cinematic spaceship flying through space')..." autocomplete="off">
+                    
+                    <div class="video-controls-row">
+                        <div class="video-control-item">
+                            <label for="videoDurationSelect">Duration:</label>
+                            <select id="videoDurationSelect" class="video-select">
+                                <option value="2">2 seconds</option>
+                                <option value="3">3 seconds</option>
+                                <option value="4">4 seconds</option>
+                                <option value="5" selected>5 seconds (Max)</option>
+                            </select>
+                        </div>
+                        <div class="video-control-item">
+                            <label for="videoAspectSelect">Format:</label>
+                            <select id="videoAspectSelect" class="video-select">
+                                <option value="square" selected>1:1 Square (512x512)</option>
+                                <option value="cinematic">16:9 Cinematic (768x432)</option>
+                                <option value="vertical">9:16 Portrait (432x768)</option>
+                            </select>
+                        </div>
+                        <div class="video-control-item video-checkbox-item">
+                            <label class="checkbox-label" title="Animate the active image generated in Image Studio">
+                                <input type="checkbox" id="videoAnimateImageCheck">
+                                <span>Animate Active Image</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="video-btn-row">
+                        <button class="hud-btn hud-btn-generate" id="studioVideoGenerateBtn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                            <span>Generate Video</span>
+                        </button>
+                        <button class="hud-btn hud-btn-stop" id="studioVideoCancelBtn" style="display: none;">Cancel</button>
+                    </div>
+                </div>
+
+                <div class="toolbar-actions">
+                    <button class="hud-btn" id="refreshVideosBtn" title="Reload video history">Refresh</button>
+                    <button class="hud-btn" id="toggleHardwareDiagBtn" title="Toggle hardware and provider diagnostics">Hardware & Providers</button>
+                </div>
+            </div>
+
+            <!-- Diagnostics Panel (Collapsible) -->
+            <div class="video-diag-panel" id="videoDiagPanel" style="display: none;">
+                <div class="diag-col" id="diagHfCol">
+                    <div class="diag-title">Hugging Face</div>
+                    <div class="diag-body" id="diagHfBody">Checking...</div>
+                </div>
+                <div class="diag-col" id="diagLocalCol">
+                    <div class="diag-title">Local Hardware</div>
+                    <div class="diag-body" id="diagLocalBody">Checking...</div>
+                </div>
+                <div class="diag-col" id="diagCostCol">
+                    <div class="diag-title">Cost Safety</div>
+                    <div class="diag-body">Free-Safe Mode: <strong>Active</strong><br>Paid Fallback: <strong>Disabled</strong></div>
+                </div>
+            </div>
+
+            <!-- Active Video Generation Progress Bar -->
+            <div class="video-progress-container" id="videoProgressContainer" style="display: none;">
+                <div class="video-progress-header">
+                    <span class="progress-status-text" id="videoProgressStatusText">Synthesizing video...</span>
+                    <span class="progress-pct-text" id="videoProgressPctText"></span>
+                </div>
+                <div class="video-progress-track">
+                    <div class="video-progress-fill" id="videoProgressFill"></div>
+                </div>
+            </div>
+
+            <!-- Video Player Showcase -->
+            <div class="video-player-showcase" id="videoPlayerShowcase" style="display: none;">
+                <div class="showcase-player-wrapper">
+                    <video id="studioVideoPlayer" controls playsinline preload="metadata"></video>
+                </div>
+                <div class="showcase-meta">
+                    <div class="showcase-prompt" id="showcasePrompt"></div>
+                    <div class="showcase-details" id="showcaseDetails"></div>
+                    <div class="showcase-actions">
+                        <button class="hud-btn" id="showcaseRegenBtn">Regenerate</button>
+                        <a class="hud-btn" id="showcaseDownloadBtn" download href="#" target="_blank">Download</a>
+                        <button class="hud-btn hud-btn-stop" id="showcaseDeleteBtn">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Gallery Grid Container -->
+            <div class="videos-gallery-container" id="videosGalleryContainer">
+                <!-- Dynamically populated by videos.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 8 Activity & Task Planner Drawer Overlay -->
+    <div class="activity-drawer-overlay" id="activityDrawerOverlay" style="display: none;">
+        <div class="activity-drawer" id="activityDrawer">
+            <div class="activity-drawer-header">
+                <div class="activity-drawer-title">
+                    <span class="activity-icon">⚡</span>
+                    <span>TONY // TASK PLANNER & ACTIVITY CONSOLE</span>
+                </div>
+                <button class="drawer-close-btn" id="closeActivityDrawer">&times;</button>
+            </div>
+            <div class="activity-drawer-body">
+                <div class="activity-section">
+                    <h4>Active & Background Tasks</h4>
+                    <div id="activeTasksList" class="tasks-list">
+                        <div class="empty-state">No active background tasks</div>
+                    </div>
+                </div>
+                <div class="activity-section">
+                    <h4>Recent Generated Media</h4>
+                    <div id="recentMediaGallery" class="media-mini-gallery"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 9 Vision & Image Understanding Studio Modal -->
+    <div class="modal-overlay vision-modal-overlay" id="visionModalOverlay" style="display: none;">
+        <div class="studio-modal vision-studio-modal" id="visionStudioModal">
+            <div class="studio-header">
+                <div class="studio-title-group">
+                    <span class="studio-badge vision-badge">STAGE 9</span>
+                    <h3>TONY // VISION & MULTIMODAL INTELLIGENCE STUDIO</h3>
+                    <span class="studio-model-indicator" id="visionModelIndicator">Ollama (moondream)</span>
+                </div>
+                <button class="studio-close-btn" id="closeVisionModalBtn" title="Close Vision Studio">&times;</button>
+            </div>
+
+            <!-- Vision Toolbar -->
+            <div class="studio-toolbar vision-toolbar">
+                <div class="vision-input-section">
+                    <!-- Drop Zone / Upload Area -->
+                    <div class="vision-dropzone" id="visionDropZone">
+                        <input type="file" id="visionFileInput" accept="image/png,image/jpeg,image/webp" style="display: none;">
+                        <div class="dropzone-prompt" id="dropzonePrompt">
+                            <span class="dropzone-icon">📁</span>
+                            <span class="dropzone-text">Drag & drop image here or <strong>click to browse</strong></span>
+                            <span class="dropzone-sub">Supports PNG, JPEG, WebP (Max 10 MB)</span>
+                        </div>
+                        <div class="dropzone-preview-wrapper" id="dropzonePreviewWrapper" style="display: none;">
+                            <img id="visionImagePreview" src="" alt="Image preview">
+                            <button type="button" class="btn-clear-preview" id="btnClearVisionPreview" title="Clear image">&times;</button>
+                        </div>
+                    </div>
+
+                    <div class="vision-controls-row">
+                        <input type="text" class="studio-prompt-input" id="visionQueryInput" placeholder="Ask a question or enter prompt (e.g. 'What is in this image?', 'Read the text')...">
+                        <div class="vision-action-buttons">
+                            <button class="hud-btn hud-btn-generate" id="btnVisionAnalyze" title="Analyze image scene">
+                                <span>Analyze</span>
+                            </button>
+                            <button class="hud-btn" id="btnVisionDescribe" title="Generate detailed description">
+                                <span>Describe</span>
+                            </button>
+                            <button class="hud-btn" id="btnVisionOCR" title="Extract text via OCR">
+                                <span>Extract Text</span>
+                            </button>
+                            <button class="hud-btn hud-btn-active-image" id="btnVisionActiveImage" title="Analyze the active image from Image Studio">
+                                <span>Analyze Active Image</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toolbar-actions">
+                    <button class="hud-btn" id="refreshVisionHistoryBtn" title="Reload past analyses">Refresh History</button>
+                </div>
+            </div>
+
+            <!-- Vision Status / Loading State -->
+            <div class="vision-loading-banner" id="visionLoadingBanner" style="display: none;">
+                <span class="spinner"></span>
+                <span id="visionLoadingText">TONY is analyzing visual features...</span>
+            </div>
+
+            <!-- Vision Error Banner -->
+            <div class="vision-error-banner" id="visionErrorBanner" style="display: none;">
+                <span class="error-icon">!</span>
+                <span id="visionErrorMessage">Error analyzing image</span>
+            </div>
+
+            <!-- Vision Result Showcase -->
+            <div class="vision-result-showcase" id="visionResultShowcase" style="display: none;">
+                <div class="result-header">
+                    <h4>ANALYSIS RESULT</h4>
+                    <span class="result-meta" id="visionResultMeta">Moondream | 1.8s</span>
+                </div>
+                <div class="result-body" id="visionResultBody"></div>
+            </div>
+
+            <!-- Vision History Gallery -->
+            <div class="vision-history-section">
+                <h4>Recent Visual Analyses</h4>
+                <div class="vision-history-list" id="visionHistoryList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 11 Personal Knowledge & RAG Studio Modal -->
+    <div class="modal-overlay knowledge-modal-overlay" id="knowledgeModalOverlay" style="display: none;">
+        <div class="studio-modal knowledge-studio-modal" id="knowledgeStudioModal">
+            <div class="studio-header">
+                <div class="studio-title-group">
+                    <span class="studio-badge knowledge-badge">STAGE 11</span>
+                    <h3>TONY // PERSONAL KNOWLEDGE &amp; RAG STUDIO</h3>
+                    <span class="studio-model-indicator" id="knowledgeModelIndicator">Hybrid Search (FTS5 BM25 + Dense Vector)</span>
+                </div>
+                <button class="studio-close-btn" id="closeKnowledgeModalBtn" title="Close Knowledge Studio">&times;</button>
+            </div>
+
+            <!-- Knowledge Stats & Telemetry Bar -->
+            <div class="knowledge-stats-bar" id="knowledgeStatsBar">
+                <div class="stat-pill"><span class="pill-label">DOCUMENTS:</span> <span id="kStatDocs" class="pill-val">0</span></div>
+                <div class="stat-pill"><span class="pill-label">CHUNKS:</span> <span id="kStatChunks" class="pill-val">0</span></div>
+                <div class="stat-pill"><span class="pill-label">STORAGE:</span> <span id="kStatStorage" class="pill-val">0 KB</span></div>
+                <div class="stat-pill"><span class="pill-label">INDEX:</span> <span id="kStatIndex" class="pill-val">SQLite FTS5</span></div>
+                <button class="hud-btn hud-btn-sm" id="btnRefreshKnowledge" title="Refresh knowledge base statistics">Refresh</button>
+            </div>
+
+            <!-- Ingestion Dropzone -->
+            <div class="knowledge-dropzone" id="knowledgeDropZone">
+                <input type="file" id="knowledgeFileInput" multiple accept=".pdf,.txt,.md,.docx,.py,.js,.ts,.html,.css,.json,.yaml,.yml,.xml,.sql,.dart,.java,.c,.cpp" style="display: none;">
+                <div class="dropzone-prompt" id="knowledgeDropzonePrompt">
+                    <span class="dropzone-icon">📚</span>
+                    <span class="dropzone-text">Drag &amp; drop documents here or <strong>click to browse</strong></span>
+                    <span class="dropzone-sub">Supports PDF, Word (DOCX), Markdown, Text, Code (.py, .js, .ts, .html, .css, .json, .yaml, .xml, .sql, .dart, .java, .c, .cpp) — Max 25 MB</span>
+                </div>
+                <div class="knowledge-upload-progress" id="knowledgeUploadProgress" style="display: none;">
+                    <span class="spinner"></span>
+                    <span id="knowledgeUploadStatus">Ingesting and indexing document...</span>
+                </div>
+            </div>
+
+            <!-- Search & Query Toolbar -->
+            <div class="knowledge-query-section">
+                <div class="knowledge-query-row">
+                    <input type="text" class="studio-prompt-input" id="knowledgeQueryInput" placeholder="Ask a question grounded in your documents, or search keywords...">
+                    <div class="knowledge-action-buttons">
+                        <button class="hud-btn hud-btn-generate" id="btnKnowledgeAsk" title="Ask question with grounded RAG answer and citations">
+                            <span>Ask RAG</span>
+                        </button>
+                        <button class="hud-btn" id="btnKnowledgeSearch" title="Search document chunks directly">
+                            <span>Search Chunks</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Banner -->
+            <div class="knowledge-error-banner" id="knowledgeErrorBanner" style="display: none;">
+                <span class="error-icon">!</span>
+                <span id="knowledgeErrorMessage">Error</span>
+            </div>
+
+            <!-- RAG Answer / Search Results Showcase -->
+            <div class="knowledge-result-showcase" id="knowledgeResultShowcase" style="display: none;">
+                <div class="result-header">
+                    <h4 id="knowledgeResultTitle">RAG ANSWER</h4>
+                    <span class="result-meta" id="knowledgeResultMeta">Hybrid Search</span>
+                </div>
+                <div class="result-body" id="knowledgeResultBody"></div>
+                <div class="citations-section" id="knowledgeCitationsSection" style="display: none;">
+                    <h5>VERIFIED CITATIONS</h5>
+                    <div class="citations-list" id="knowledgeCitationsList"></div>
+                </div>
+            </div>
+
+            <!-- Ingested Documents List -->
+            <div class="knowledge-documents-section">
+                <h4>Ingested Knowledge Documents</h4>
+                <div class="knowledge-documents-list" id="knowledgeDocumentsList">
+                    <div class="empty-state">No documents ingested yet. Drop files above to build your personal knowledge base.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 12 Personalization & Proactive Intelligence Modal -->
+    <div class="modal-overlay personalization-modal-overlay" id="personalizationModalOverlay" style="display: none;">
+        <div class="studio-modal personalization-studio-modal" id="personalizationStudioModal">
+            <div class="studio-header">
+                <div class="studio-title-group">
+                    <span class="studio-badge personalization-badge">STAGE 12</span>
+                    <h3>TONY // PERSONALIZATION &amp; PROACTIVE STUDIO</h3>
+                    <span class="studio-model-indicator" id="personalizationModelIndicator">JARVIS Adaptive Profile</span>
+                </div>
+                <button class="studio-close-btn" id="closePersonalizationModalBtn" title="Close Personalization Studio">&times;</button>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="personalization-tabs">
+                <button class="tab-btn active" data-tab="tabProfile" id="tabBtnProfile">User Profile</button>
+                <button class="tab-btn" data-tab="tabPreferences" id="tabBtnPreferences">Preferences</button>
+                <button class="tab-btn" data-tab="tabReminders" id="tabBtnReminders">Reminders &amp; Schedule</button>
+                <button class="tab-btn" data-tab="tabRoutines" id="tabBtnRoutines">Routines</button>
+                <button class="tab-btn" data-tab="tabProactive" id="tabBtnProactive">Proactive &amp; Briefings</button>
+                <button class="tab-btn" data-tab="tabNotifications" id="tabBtnNotifications">Notifications</button>
+            </div>
+
+            <!-- Tab 1: Profile -->
+            <div class="personalization-tab-content active" id="tabProfile">
+                <div class="personalization-form-grid">
+                    <div class="form-group">
+                        <label for="profUserName">User Name</label>
+                        <input type="text" id="profUserName" class="hud-input" placeholder="e.g. Tony Stark">
+                    </div>
+                    <div class="form-group">
+                        <label for="profPreferredAddress">Preferred Address</label>
+                        <input type="text" id="profPreferredAddress" class="hud-input" placeholder="e.g. Boss, Sir, Tony">
+                    </div>
+                    <div class="form-group">
+                        <label for="profRole">Role / Title</label>
+                        <input type="text" id="profRole" class="hud-input" placeholder="e.g. Creator / Lead Engineer">
+                    </div>
+                    <div class="form-group">
+                        <label for="profTimezone">Timezone</label>
+                        <input type="text" id="profTimezone" class="hud-input" placeholder="e.g. Asia/Kolkata">
+                    </div>
+                    <div class="form-group">
+                        <label for="profCommStyle">Communication Style</label>
+                        <select id="profCommStyle" class="hud-select">
+                            <option value="concise">Concise (Fast, punchy responses)</option>
+                            <option value="technical">Technical (Deep architectural explanations)</option>
+                            <option value="warm">Warm (Encouraging and supportive)</option>
+                            <option value="direct">Direct (Action-first, minimal filler)</option>
+                            <option value="formal">Formal (Executive and structured)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profTone">Tone Persona</label>
+                        <select id="profTone" class="hud-select">
+                            <option value="iron_man_witty">Iron Man / JARVIS Witty</option>
+                            <option value="professional">Professional Engineer</option>
+                            <option value="friendly">Friendly Assistant</option>
+                            <option value="sarcastic">Playfully Sarcastic</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profVerbosity">Verbosity</label>
+                        <select id="profVerbosity" class="hud-select">
+                            <option value="low">Low (1-2 sentences)</option>
+                            <option value="medium">Medium (Standard paragraph)</option>
+                            <option value="high">High (Exhaustive detail)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profWakeWord">Wake Word</label>
+                        <input type="text" id="profWakeWord" class="hud-input" placeholder="e.g. hey tony">
+                    </div>
+                </div>
+                <div class="personalization-actions">
+                    <button class="hud-btn hud-btn-generate" id="btnSaveProfile">Save Profile</button>
+                    <button class="hud-btn hud-btn-danger" id="btnResetPersonalization">Reset to Factory</button>
+                </div>
+            </div>
+
+            <!-- Tab 2: Preferences -->
+            <div class="personalization-tab-content" id="tabPreferences" style="display: none;">
+                <div class="preference-create-card">
+                    <div class="personalization-form-grid">
+                        <div class="form-group">
+                            <label for="prefKey">Key</label>
+                            <input type="text" id="prefKey" class="hud-input" placeholder="e.g. preferred_ide">
+                        </div>
+                        <div class="form-group">
+                            <label for="prefVal">Value</label>
+                            <input type="text" id="prefVal" class="hud-input" placeholder="e.g. VS Code">
+                        </div>
+                        <div class="form-group">
+                            <label for="prefCat">Category</label>
+                            <select id="prefCat" class="hud-select">
+                                <option value="general">general</option>
+                                <option value="ui">ui</option>
+                                <option value="assistant">assistant</option>
+                                <option value="notifications">notifications</option>
+                                <option value="routines">routines</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="personalization-actions">
+                        <button class="hud-btn hud-btn-generate" id="btnSetPreference">Set Preference</button>
+                    </div>
+                </div>
+                <div class="preferences-table-wrap">
+                    <h4>Active Preferences</h4>
+                    <div id="preferencesListContainer" class="preferences-list">
+                        <div class="empty-state">No custom preferences stored.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Reminders & Schedule -->
+            <div class="personalization-tab-content" id="tabReminders" style="display: none;">
+                <div class="reminder-create-card">
+                    <h4>Schedule New Reminder</h4>
+                    <div class="personalization-form-grid">
+                        <div class="form-group full-width">
+                            <label for="newRemTitle">Reminder Title / Instruction</label>
+                            <input type="text" id="newRemTitle" class="hud-input" placeholder="e.g. Check system diagnostics or 'Remind me in 10 minutes to take a break'">
+                        </div>
+                        <div class="form-group">
+                            <label for="newRemDueTime">Due Time / Relative</label>
+                            <input type="text" id="newRemDueTime" class="hud-input" placeholder="e.g. in 15 minutes, tomorrow at 9am, or leave blank if in text">
+                        </div>
+                        <div class="form-group">
+                            <label for="newRemRecurrence">Recurrence</label>
+                            <select id="newRemRecurrence" class="hud-select">
+                                <option value="none">One-time (None)</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="weekdays">Every Weekday</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="personalization-actions">
+                        <button class="hud-btn hud-btn-generate" id="btnScheduleReminder">Create Reminder</button>
+                    </div>
+                </div>
+                <div class="reminders-list-section">
+                    <div class="reminders-header-bar">
+                        <h4>Scheduled Reminders</h4>
+                        <button class="hud-btn" id="btnRefreshReminders">Refresh</button>
+                    </div>
+                    <div id="remindersListContainer" class="reminders-list">
+                        <div class="empty-state">No scheduled reminders found.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Routines -->
+            <div class="personalization-tab-content" id="tabRoutines" style="display: none;">
+                <div class="routines-grid">
+                    <div class="routine-card" id="cardRoutineMorning">
+                        <div class="routine-card-header">
+                            <h4>Morning Routine</h4>
+                            <span class="routine-badge">Active</span>
+                        </div>
+                        <p class="routine-desc">Generates morning briefing, lists today's reminders, and checks system health.</p>
+                        <ul class="routine-steps">
+                            <li>1. Synthesize grounded morning briefing</li>
+                            <li>2. Fetch pending daily reminders</li>
+                            <li>3. Check system telemetry &amp; battery</li>
+                        </ul>
+                        <button class="hud-btn hud-btn-generate btn-run-routine" data-routine="morning">Run Routine</button>
+                    </div>
+
+                    <div class="routine-card" id="cardRoutineStudy">
+                        <div class="routine-card-header">
+                            <h4>Study Routine</h4>
+                            <span class="routine-badge">Active</span>
+                        </div>
+                        <p class="routine-desc">Enables focus mode, summarizes knowledge bookmarks, and queues study reminder.</p>
+                        <ul class="routine-steps">
+                            <li>1. Set focus mode preference</li>
+                            <li>2. Check knowledge base bookmarks</li>
+                            <li>3. Schedule 45-minute focus check</li>
+                        </ul>
+                        <button class="hud-btn hud-btn-generate btn-run-routine" data-routine="study">Run Routine</button>
+                    </div>
+
+                    <div class="routine-card" id="cardRoutineEvening">
+                        <div class="routine-card-header">
+                            <h4>Evening Routine</h4>
+                            <span class="routine-badge">Active</span>
+                        </div>
+                        <p class="routine-desc">Synthesizes day summary, checks completed tasks, and prepares next day preview.</p>
+                        <ul class="routine-steps">
+                            <li>1. Synthesize day summary</li>
+                            <li>2. Review completed reminders &amp; tasks</li>
+                            <li>3. Preview tomorrow's schedule</li>
+                        </ul>
+                        <button class="hud-btn hud-btn-generate btn-run-routine" data-routine="evening">Run Routine</button>
+                    </div>
+                </div>
+                <div id="routineResultBox" class="routine-result-box" style="display: none;">
+                    <h5>ROUTINE EXECUTION LOG</h5>
+                    <pre id="routineResultText"></pre>
+                </div>
+            </div>
+
+            <!-- Tab 5: Proactive & Briefings -->
+            <div class="personalization-tab-content" id="tabProactive" style="display: none;">
+                <div class="proactive-settings-grid">
+                    <div class="proactive-toggle-card">
+                        <h4>Proactive Intelligence Mode</h4>
+                        <p class="proactive-desc">Autonomous suggestions and scheduled briefings based on context and routines.</p>
+                        <div class="proactive-toggle-wrap">
+                            <label class="switch">
+                                <input type="checkbox" id="proactiveToggleSwitch">
+                                <span class="slider round"></span>
+                            </label>
+                            <span id="proactiveStatusText" class="proactive-status-label">PROACTIVE: OFF</span>
+                        </div>
+                    </div>
+                    <div class="proactive-policy-card">
+                        <h4>Safety &amp; Quiet Hours Policy</h4>
+                        <div class="policy-item">
+                            <span class="policy-label">Quiet Hours:</span>
+                            <span class="policy-val" id="dispQuietHours">22:00 - 07:00</span>
+                        </div>
+                        <div class="policy-item">
+                            <span class="policy-label">Max Proactive Actions / Day:</span>
+                            <span class="policy-val" id="dispMaxActions">5</span>
+                        </div>
+                        <div class="policy-item">
+                            <span class="policy-label">Consequential Execution:</span>
+                            <span class="policy-val safe-badge">Blocked (Gated)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="briefing-actions-card">
+                    <h4>On-Demand Grounded Briefings</h4>
+                    <div class="personalization-actions">
+                        <button class="hud-btn hud-btn-generate" id="btnGenMorningBriefing">Generate Morning Briefing</button>
+                        <button class="hud-btn" id="btnGenEveningSummary">Generate Evening Summary</button>
+                    </div>
+                    <div id="briefingResultShowcase" class="briefing-result-showcase" style="display: none;">
+                        <div class="result-header">
+                            <h5 id="briefingResultTitle">MORNING BRIEFING</h5>
+                            <button class="hud-btn hud-btn-small" id="btnSpeakBriefing">Speak</button>
+                        </div>
+                        <div class="briefing-body" id="briefingResultBody"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 6: Notifications -->
+            <div class="personalization-tab-content" id="tabNotifications" style="display: none;">
+                <div class="notifications-header-bar">
+                    <h4>Delivered Notifications</h4>
+                    <button class="hud-btn" id="btnDismissAllNotifications">Dismiss All</button>
+                </div>
+                <div id="notificationsListContainer" class="notifications-list">
+                    <div class="empty-state">No notifications recorded yet.</div>
+                </div>
+            </div>
+
+            <!-- Global Status / Error Banner -->
+            <div class="personalization-status-banner" id="personalizationStatusBanner" style="display: none;">
+                <span id="personalizationStatusText"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TONY SELF-UPGRADE MODAL -->
+    <!-- ========================================== -->
+    <div class="modal-overlay upgrade-modal-overlay" id="selfUpgradeModalOverlay" style="display: none;">
+        <div class="studio-modal upgrade-studio-modal" id="selfUpgradeStudioModal">
+            <div class="studio-header">
+                <div class="studio-title-group">
+                    <span class="studio-badge upgrade-badge">ARCHITECTURAL SUBSYSTEM</span>
+                    <h3>TONY // SELF-UPGRADE &amp; DIAGNOSTIC STUDIO</h3>
+                    <span class="studio-model-indicator" id="selfUpgradeModelIndicator">Controlled Software Engineering Subsystem</span>
+                </div>
+                <button class="studio-close-btn" id="closeSelfUpgradeModalBtn" title="Close Self-Upgrade Studio">&times;</button>
+            </div>
+
+            <!-- Health & Telemetry Status Cards -->
+            <div class="upgrade-telemetry-grid">
+                <div class="upgrade-stat-card">
+                    <span class="card-label">SYSTEM HEALTH</span>
+                    <span class="card-val" id="valSysHealth">ONLINE</span>
+                </div>
+                <div class="upgrade-stat-card">
+                    <span class="card-label">INTELLIGENCE HEALTH</span>
+                    <span class="card-val" id="valIntelHealth">ACTIVE</span>
+                </div>
+                <div class="upgrade-stat-card">
+                    <span class="card-label">PROVIDER HEALTH</span>
+                    <span class="card-val" id="valProviderHealth">HEALTHY</span>
+                </div>
+                <div class="upgrade-stat-card">
+                    <span class="card-label">TEST STATUS</span>
+                    <span class="card-val" id="valTestStatus">355 PASS</span>
+                </div>
+            </div>
+
+            <!-- Action Controls Toolbar -->
+            <div class="upgrade-toolbar">
+                <button class="hud-btn hud-btn-generate" id="btnRunDiagnostic">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                    <span>RUN DIAGNOSTIC</span>
+                </button>
+                <button class="hud-btn" id="btnCreateUpgradePlan">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <span>CREATE UPGRADE PLAN</span>
+                </button>
+                <button class="hud-btn hud-btn-primary" id="btnApplyApprovedUpgrade">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>APPLY APPROVED UPGRADE</span>
+                </button>
+                <button class="hud-btn" id="btnRunTests">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <span>RUN TESTS</span>
+                </button>
+                <button class="hud-btn hud-btn-danger" id="btnRollbackUpgrade">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="1 4 1 10 7 10"></polyline>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                    </svg>
+                    <span>ROLLBACK</span>
+                </button>
+            </div>
+
+            <!-- Upgrade Details Showcase -->
+            <div class="upgrade-sections-grid">
+                <!-- Pending Upgrade & Changed Files -->
+                <div class="upgrade-panel">
+                    <h4>PENDING UPGRADE &amp; PLAN</h4>
+                    <div id="pendingUpgradeContainer" class="upgrade-detail-box">
+                        <div class="detail-row"><span class="detail-label">Status:</span> <span id="valPendingStatus">No pending upgrade</span></div>
+                        <div class="detail-row"><span class="detail-label">Upgrade ID:</span> <span id="valPendingId">—</span></div>
+                        <div class="detail-row"><span class="detail-label">Reason:</span> <span id="valPendingReason">—</span></div>
+                        <div class="detail-row"><span class="detail-label">Risk Level:</span> <span id="valRiskLevel" class="risk-badge low">LOW</span></div>
+                        <div class="detail-row"><span class="detail-label">Tests Affected:</span> <span id="valTestsAffected">0</span></div>
+                        <div class="detail-row"><span class="detail-label">Changed Files:</span> <span id="valChangedFiles">None</span></div>
+                    </div>
+                </div>
+
+                <!-- Last Upgrade & History -->
+                <div class="upgrade-panel">
+                    <h4>UPGRADE HISTORY &amp; BACKUPS</h4>
+                    <div id="upgradeHistoryContainer" class="upgrade-history-list">
+                        <div class="empty-state">No upgrade history recorded yet.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terminal / Test Output Log -->
+            <div class="upgrade-log-panel">
+                <div class="log-header">
+                    <span>EXECUTION TELEMETRY &amp; TEST OUTPUT</span>
+                    <button class="hud-btn hud-btn-sm" id="btnClearUpgradeLog">Clear</button>
+                </div>
+                <pre id="upgradeTerminalLog" class="upgrade-terminal">Ready. Select RUN DIAGNOSTIC to inspect subsystem readiness.</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden audio element for speech playback -->
+    <audio id="tonyAudioPlayer" style="display: none;"></audio>
+
+    <!-- Client Scripts -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/voice.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/memory.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tools.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/images.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/videos.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/assistant.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vision.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/agent.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/knowledge.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/personalization.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/self_upgrade.js') }}"></script>
+</body>
+</html>
+
